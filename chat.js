@@ -1,4 +1,6 @@
 // Подключаемся к Twitch
+
+if (typeof client !== "undefined") client = null;
 let client = new tmi.Client({
     connection: { secure: true, reconnect: true },
     channels: ["WhiteEls"]
