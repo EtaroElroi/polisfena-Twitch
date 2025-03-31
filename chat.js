@@ -1,7 +1,7 @@
 // Подключаемся к Twitch
 const client = new tmi.Client({
     connection: { secure: true, reconnect: true },
-    channels: ["ТWhiteEls"] // Замени на свой ник!
+    channels: ["WhiteEls"]
 });
 
 client.connect();
