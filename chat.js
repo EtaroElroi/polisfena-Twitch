@@ -1,6 +1,6 @@
 const client = new tmi.Client({
     connection: { secure: true, reconnect: true },
-    channels: ["ТВОЙ_НИК_НА_TWITCH"] // Замени на свой канал
+    channels: ["WhiteEls"] // Замени на свой канал
 });
 
 client.connect();
