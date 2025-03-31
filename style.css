@@ -1,0 +1,33 @@
+body {
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+}
+
+#chat-container {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    animation: fade-in 0.5s forwards, fade-out 0.5s forwards 8s;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+    to { opacity: 0; transform: translateY(-10px); }
+}
