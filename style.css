@@ -1,35 +1,31 @@
-body {
-    margin: 0;
-    background: transparent;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-  }
-  
-  #chat {
+#chat {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    font-family: sans-serif;
+    color: white;
     padding: 20px;
   }
   
-  .message {
-    animation: fadeInUp 0.5s ease, fadeOut 0.5s ease 14s forwards;
+  .chat-message {
     margin-bottom: 10px;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 8px 12px;
-    border-radius: 8px;
+    font-size: 18px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
   }
   
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   @keyframes fadeOut {
-    to { opacity: 0; transform: translateY(-20px); }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
   }
   
