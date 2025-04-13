@@ -1,33 +1,39 @@
 body {
-    background: transparent;
-    overflow: hidden;
     margin: 0;
-}
-
-#chat-container {
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    width: 80%;
+    padding: 0;
+    background: transparent;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+  
+  #chat-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 100%;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-.message {
-    opacity: 0;
-    background: rgba(255, 255, 255, 0.2);
+    gap: 10px;
+    pointer-events: none;
+  }
+  
+  .chat-message {
+    background: rgba(0, 0, 0, 0.6);
     color: white;
-    padding: 10px;
-    margin: 5px 0;
+    font-size: 20px;
+    padding: 10px 15px;
     border-radius: 8px;
-    animation: fade-in 0.5s forwards, fade-out 0.5s forwards 8s;
-}
-
-@keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fade-out {
-    to { opacity: 0; transform: translateY(-10px); }
-}
+    animation: fadein 0.5s ease, slideup 0.5s ease;
+  }
+  
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideup {
+    from { transform: translateY(20px); }
+    to { transform: translateY(0); }
+  }
+  
