@@ -15,23 +15,17 @@ socket.addEventListener('open', () => {
   }));
 });
 
-socket.addEventListener("open", () => {
-  console.log("✅ WebSocket подключен");
-});
-
 socket.addEventListener("message", (event) => {
-  console.log("📩 Получено сообщение:", event.data);
-});
+  const data = JSON.parse(event.data);
 
+  if (data.type === "event" && data.data && data.data.message) {
+    const msg = data.data.message;
+    const username = msg.tags['displayName'];
+    const userMessage = msg.text;
 
-socket.addEventListener("message", (event) => {
-  const message = JSON.parse(event.data);
-  if (message.type === "event" && message.event && message.event.type === "message") {
-    const userMessage = message.event.data.text;
-    const username = message.event.data.displayName;
+    const isHighlighted = !!msg.tags['custom-reward-id']; // true, если юзер использует баллы канала
 
-    // 👇 Здесь происходит отрисовка
-    displayMessage(username, userMessage);
+    displayMessage(username, userMessage, isHighlighted);
   }
 });
 
