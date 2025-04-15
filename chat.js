@@ -1,6 +1,5 @@
 const channelName = "whiteels";
-const chatContainer = document.getElementById("chat-container");
-const chat = chatContainer;
+const chat = document.getElementById("chat-container");
 
 const socket = new WebSocket('wss://astro.streamelements.com');
 
@@ -29,6 +28,8 @@ socket.addEventListener("message", (event) => {
 
 // Функция для отображения сообщений в HTML
 function displayMessage(username, message) {
+  console.log("📨 Новое сообщение от", username, ":", userMessage);
+
   const chat = document.getElementById("chat");
 
   const messageElement = document.createElement("div");
@@ -44,4 +45,4 @@ function displayMessage(username, message) {
 
   chat.appendChild(messageElement);
   chat.scrollTop = chat.scrollHeight;
-};
+}
