@@ -9,7 +9,7 @@ socket.addEventListener('open', () => {
   socket.send(JSON.stringify({
     type: 'authenticate',
     data: {
-      token: TWITCH_JWT_TOKEN
+      token: CONFIG.TWITCH_JWT_TOKEN
     }
   }));
 });
