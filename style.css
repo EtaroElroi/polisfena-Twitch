@@ -10,7 +10,6 @@ body {
   background: transparent !important; /* Прозрачный фон для оверлея */
   width: 1920px;
   height: 1080px;
-  overflow: hidden;
 }
 
 /* Контейнер чата */
