@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Для работы с StreamElements API -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://realtime.streamelements.com">
-    <title>Custom Chat Overlay</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Подключаем Socket.io -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://realtime.streamelements.com wss://realtime.streamelements.com;">
-    <script src="chat.js"></script>
+  <meta charset="UTF-8" />
+  <title>Twitch Chat</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Контейнер для чата -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Чат стрима</h2> 
-        </div>
-        <div class="chat-messages"></div>
-    </div>
+  <div id="chat-container">
+    <div id="chat"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="chat.js"></script>
+  <script src="alerts.js"></script>
 </body>
 </html>
