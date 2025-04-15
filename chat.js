@@ -15,6 +15,15 @@ socket.addEventListener('open', () => {
   }));
 });
 
+socket.addEventListener("open", () => {
+  console.log("✅ WebSocket подключен");
+});
+
+socket.addEventListener("message", (event) => {
+  console.log("📩 Получено сообщение:", event.data);
+});
+
+
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
   if (message.type === "event" && message.event && message.event.type === "message") {
