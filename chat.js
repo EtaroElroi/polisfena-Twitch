@@ -1,3 +1,4 @@
+const channelName = "whiteels";
 const chatContainer = document.getElementById("chat-container");
 
 const socket = new WebSocket('wss://astro.streamelements.com');
@@ -14,22 +15,32 @@ socket.addEventListener('open', () => {
   }));
 });
 
-socket.addEventListener('message', (event) => {
-  const packet = JSON.parse(event.data);
+socket.addEventListener("message", (event) => {
+  const message = JSON.parse(event.data);
+  if (message.type === "event" && message.event && message.event.type === "message") {
+    const userMessage = message.event.data.text;
+    const username = message.event.data.displayName;
 
-  // Обработка сообщений чата
-  if (packet.type === 'event' && packet.event && packet.event.type === 'message') {
-    const { displayName, message } = packet.event.data;
-
-    const msgElement = document.createElement("div");
-    msgElement.className = "message";
-    msgElement.innerHTML = `<strong>${displayName}:</strong> ${message}`;
-
-    chatContainer.prepend(msgElement);
-
-    // Удаление сообщения через 30 секунд
-    setTimeout(() => {
-      msgElement.remove();
-    }, 30000);
+    // 👇 Здесь происходит отрисовка
+    displayMessage(username, userMessage);
   }
 });
+
+// Функция для отображения сообщений в HTML
+function displayMessage(username, message) {
+  const chat = document.getElementById("chat");
+
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("message");
+
+  // Пример: если сообщение содержит "!highlight", оно окрашивается в другой цвет
+  const isHighlighted = message.includes("!highlight");
+
+  messageElement.innerHTML = `
+    <span class="username">${username}:</span>
+    <span class="text ${isHighlighted ? "highlight" : ""}">${message}</span>
+  `;
+
+  chat.appendChild(messageElement);
+  chat.scrollTop = chat.scrollHeight;
+};
