@@ -1,37 +1,32 @@
-// chat.js
-import { STREAM_ELEMENTS_JWT } from "./config.js";
+const chatContainer = document.getElementById("chat-container");
 
 const socket = new WebSocket(`wss://realtime.streamelements.com/socket.io/?transport=websocket`);
 
-socket.addEventListener("open", () => {
-  console.log("WebSocket StreamElements подключён");
-
-  // Авторизация
+socket.addEventListener('open', () => {
+  console.log("WebSocket connected");
   socket.send(JSON.stringify({
-    event: "authenticate",
+    type: 'authenticate',
     data: {
-      method: "jwt",
-      token: STREAM_ELEMENTS_JWT
+      token: JWT_TOKEN
     }
   }));
 });
 
-socket.addEventListener("message", (event) => {
-  const { event: type, data } = JSON.parse(event.data);
+socket.addEventListener('message', (event) => {
+  const packet = JSON.parse(event.data);
 
-  if (type === "event" && data.listener === "message") {
-    const { name, message } = data.event;
-    addMessageToChat(name, message);
+  if (packet.type === 'event' && packet.event && packet.event.type === 'message') {
+    const { displayName, message } = packet.event.data;
+
+    const msgElement = document.createElement("div");
+    msgElement.className = "message";
+    msgElement.innerHTML = `<strong>${displayName}:</strong> ${message}`;
+
+    chatContainer.prepend(msgElement);
+
+    // Удаление через 30 секунд
+    setTimeout(() => {
+      msgElement.remove();
+    }, 30000);
   }
 });
-
-function addMessageToChat(username, message) {
-  const chatBox = document.getElementById("chat");
-  const messageEl = document.createElement("div");
-  messageEl.className = "chat-message";
-  messageEl.innerHTML = `<strong>${username}:</strong> ${message}`;
-  chatBox.appendChild(messageEl);
-
-  // Анимация появления и удаления
-  messageEl.style.animation = "fadeIn 0.5s ease-out, fadeOut 0.5s ease-in 10s forwards";
-}
