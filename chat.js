@@ -1,3 +1,7 @@
+// Убедитесь, что класс контейнера совпадает
+const chatContainer = document.querySelector(".chat-messages");
+
+
 // Подключение к WebSocket
 const socket = io('https://realtime.streamelements.com', {
   transports: ['websocket']
@@ -11,16 +15,16 @@ socket.on('connect', () => {
   });
 });
 
-socket.on('event', (data) => {
-  if (data.type === 'message') {
+// Пример обработки сообщения
+socket.on("event", (data) => {
+  if (data.type === "message") {
     const message = data.data;
-    const chat = document.querySelector('.chat-messages');
-    const msgElement = document.createElement('div');
-    msgElement.className = 'message';
-    msgElement.innerHTML = `
-      <span class="user-name">${message.displayName}</span>
+    const messageElement = document.createElement("div");
+    messageElement.className = "message";
+    messageElement.innerHTML = `
+      <span class="user">${message.displayName}:</span>
       <span class="text">${message.text}</span>
     `;
-    chat.appendChild(msgElement);
+    chatContainer.appendChild(messageElement);
   }
 });
