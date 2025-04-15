@@ -7,7 +7,7 @@ socket.addEventListener('open', () => {
   socket.send(JSON.stringify({
     type: 'authenticate',
     data: {
-      token: JWT_TOKEN
+      token: TWITCH_JWT_TOKEN
     }
   }));
 });
@@ -23,10 +23,6 @@ socket.addEventListener('message', (event) => {
     msgElement.innerHTML = `<strong>${displayName}:</strong> ${message}`;
 
     chatContainer.prepend(msgElement);
-
-    // Удаление через 30 секунд
-    setTimeout(() => {
-      msgElement.remove();
-    }, 30000);
+    
   }
 });
