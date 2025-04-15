@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Custom Twitch Chat</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Для работы с StreamElements API -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://realtime.streamelements.com">
+    <title>Custom Chat Overlay</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Socket.io -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 </head>
 <body>
-  <div id="chat-container">
-    <div id="chat"></div>
-  </div>
+    <!-- Контейнер для чата -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Чат стрима</h2> 
+        </div>
+        <div class="chat-messages"></div>
+    </div>
 
-  <script src="config.js"></script>
-  <script src="chat.js"></script>
+    <!-- Логика чата -->
+    <script src="script.js"></script>
 </body>
-
 </html>
