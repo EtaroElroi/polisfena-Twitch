@@ -1,5 +1,6 @@
 const channelName = "whiteels";
 const chatContainer = document.getElementById("chat-container");
+const chat = chatContainer;
 
 const socket = new WebSocket('wss://astro.streamelements.com');
 
